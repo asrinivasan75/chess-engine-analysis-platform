@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #1a1a1a;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d2d2d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Chess board animations */
+.piece-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+.board-highlight {
+  box-shadow: 0 0 20px rgba(244, 185, 66, 0.3);
+}
+
+/* Analysis animations */
+.analysis-fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.evaluation-bar {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pv-move {
+  transition: all 0.2s ease;
+}
+
+.pv-move:hover {
+  background-color: rgba(244, 185, 66, 0.1);
+  border-radius: 4px;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Game analysis grid */
+.analysis-grid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 20px;
+  height: calc(100vh - 120px);
+}
+
+@media (max-width: 1024px) {
+  .analysis-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
+/* Move classification colors */
+.move-best { color: #4caf50; }
+.move-good { color: #8bc34a; }
+.move-inaccuracy { color: #ff9800; }
+.move-mistake { color: #ff5722; }
+.move-blunder { color: #f44336; }
+
+/* Evaluation chart styling */
+.evaluation-chart {
+  background: #2d2d2d;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.evaluation-chart .recharts-tooltip-wrapper {
+  border-radius: 8px;
+}
+
+.evaluation-chart .recharts-tooltip-content {
+  background: rgba(0, 0, 0, 0.9) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  color: white !important;
+}
+
+/* Engine status indicator */
+.engine-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.engine-status.online {
+  background: rgba(76, 175, 80, 0.1);
+  color: #4caf50;
+}
+
+.engine-status.offline {
+  background: rgba(244, 67, 54, 0.1);
+  color: #f44336;
+}
+
+/* WebSocket status */
+.ws-status {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+}
+
+.ws-status.connected {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.ws-status.disconnected {
+  background: rgba(244, 67, 54, 0.2);
+  color: #f44336;
+  border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.ws-status.connecting {
+  background: rgba(255, 152, 0, 0.2);
+  color: #ff9800;
+  border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+/* Game analysis progress */
+.analysis-progress {
+  margin: 16px 0;
+}
+
+.analysis-progress .MuiLinearProgress-root {
+  height: 6px;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.analysis-progress .MuiLinearProgress-bar {
+  border-radius: 3px;
+  background: linear-gradient(90deg, #f4b942, #e8a938);
+}
+
+/* Responsive design helpers */
+.mobile-hidden {
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+.desktop-hidden {
+  @media (min-width: 769px) {
+    display: none !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-break-before {
+    page-break-before: always;
+  }
+  
+  .print-break-after {
+    page-break-after: always;
+  }
+}

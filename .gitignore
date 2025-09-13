@@ -1,0 +1,27 @@
+# C++/CMake
+build/
+engine/build/
+cmake-build-*/
+*.o
+*.a
+*.so
+*.exe
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Node/React
+node_modules/
+dist/
+.web/
+.vite/
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
